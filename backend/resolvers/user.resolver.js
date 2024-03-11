@@ -1,4 +1,3 @@
-import {users} from '../dummyData/data.js'
 import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 const userResolver = {
@@ -43,6 +42,8 @@ const userResolver = {
       try {
         const { username, password} = input
 
+        if (!username || !password) throw new Error("All fields are required");
+
         const {user} = await context.authenticate("graphql-local", {username, password})
 
         await context.login(user)
@@ -53,14 +54,14 @@ const userResolver = {
         throw new Error(error.message || "Internal server error")
       }
     },
-    logout: async(_,_, context) => {
+    logout: async(_, __, context) => {
       try {
         await context.logout()
-        req.session.destroy((error) => {
+        context.req.session.destroy((error) => {
           if(error) throw error;
         }) 
 
-        res.clearCookie("connect.sid")
+        context.res.clearCookie("connect.sid")
 
         return { message: "Logged out successfully"}
 
@@ -71,13 +72,13 @@ const userResolver = {
     }
   },
   Query: {
-    authUser: async(_,_, context) => {
+    authUser: async(_,__, context) => {
       try {
         const user = await context.getUser()
         return user
       } catch (error) {
         console.log("Error in authUser", error)
-        throw new Error(error.message || "Internal server error")
+        throw new Error( "Internal server error")
       }
     },
     user: async(_, {userId}) => {

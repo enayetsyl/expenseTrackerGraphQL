@@ -3,6 +3,8 @@
 - Card Design at Card.tsx
 - Heading gradient color
 - Transaction form formData.get method.
+- Graphql best practice 1. merge resolver, merged typeDef, at frontend separate mutation and queries folder with respective file
+- Full note of frontend and backend for graphql
 
 
 
