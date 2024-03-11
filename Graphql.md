@@ -1,3 +1,13 @@
+  # NOTE TOPIC
+
+- Card Design at Card.tsx
+- Heading gradient color
+- Transaction form formData.get method.
+
+
+
+
+
 ### How to create a typeDef
 
 - Create a js file 
@@ -82,3 +92,4 @@ type LogoutResponse {
 - LoginInput will take two items from frontend all are string and all are required.
 
 - LogoutResponse will send a message to the frontend and its type is string and it is required. 
+

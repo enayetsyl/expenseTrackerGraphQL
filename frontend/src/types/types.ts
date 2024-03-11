@@ -15,4 +15,8 @@ export type RadioButtonProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string | number | readonly string[] | undefined;
   checked: boolean
+	name: string
 }
+
+
+export type CardType = "saving" | "expense" | "investment";
