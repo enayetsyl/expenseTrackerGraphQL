@@ -1,14 +1,16 @@
 import http from 'http';
 import cors from 'cors';
 import express from 'express';
+import dotenv from 'dotenv'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import mergedResolvers from "./resolvers/index.js"
 import mergedTypeDef from './typeDefs/index.js'
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
+import {connectDB} from './db/connectDB.js'
 
 const app = express();
-
+dotenv.config()
 const httpServer = http.createServer(app);
 
 const server = new ApolloServer({
@@ -32,5 +34,6 @@ app.use(
 
 // Modified server startup
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+await connectDB()
 
 console.log(`🚀 Server ready at http://localhost:4000/`);

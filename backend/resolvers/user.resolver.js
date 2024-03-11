@@ -6,7 +6,7 @@ const userResolver = {
       return users
     },
     user: (_, {userId}) => {
-      return users. find((user) => user._id === userId)
+      return Users.find((user) => user._id === userId)
     }
 
   },
